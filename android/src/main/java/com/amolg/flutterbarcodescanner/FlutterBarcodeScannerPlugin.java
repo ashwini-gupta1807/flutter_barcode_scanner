@@ -166,8 +166,11 @@ package com.amolg.flutterbarcodescanner;
         }
 
         @Override
-        public void onAttachedToEngine(FlutterPluginBinding binding) {
+        public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
             pluginBinding = binding;
+
+            channel = new MethodChannel(binding.getBinaryMessenger(), CHANNEL);
+            channel.setMethodCallHandler(this);
         }
 
         @Override
@@ -191,7 +194,7 @@ package com.amolg.flutterbarcodescanner;
                 final Activity activity,
                 final ActivityPluginBinding activityBinding) {
 
-            this.activity = (FlutterActivity) activity;
+            this.activity = activity;
             eventChannel = new EventChannel(messenger, "flutter_barcode_scanner_receiver");
             eventChannel.setStreamHandler(this);
 
