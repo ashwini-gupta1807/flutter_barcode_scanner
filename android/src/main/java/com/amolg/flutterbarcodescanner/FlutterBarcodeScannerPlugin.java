@@ -36,7 +36,7 @@ package com.amolg.flutterbarcodescanner;
     public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener, StreamHandler, FlutterPlugin, ActivityAware {
         private static final String CHANNEL = "flutter_barcode_scanner";
 
-        private static FlutterActivity activity;
+        private Activity activity;
         private static Result pendingResult;
         private Map<String, Object> arguments;
 
@@ -59,8 +59,9 @@ package com.amolg.flutterbarcodescanner;
         }
 
         private FlutterBarcodeScannerPlugin(Activity activity) {
-            FlutterBarcodeScannerPlugin.activity = (FlutterActivity) activity;
+            FlutterBarcodeScannerPlugin.activity = (Activity) activity;
         }
+
 
         @Override
         public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
